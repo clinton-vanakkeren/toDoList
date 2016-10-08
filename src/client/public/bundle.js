@@ -56,18 +56,17 @@
 	  getInitialState: function getInitialState() {
 	    return {
 	      items: [],
-	      index: 0,
-	      listItems: ''
+	      index: 0
 	    };
 	  },
-	  makeTasks: function makeTasks(item) {
-	    var toDoEntries = this.state.items;
-	    function makeTasks(item) {
-	      return React.createElement(ListItem, { itemName: item.text, itemKey: item.key, handleClick: deleteItem });
-	    }
-	    var listItems = toDoEntries.map(makeTasks);
-	    this.setState({ listItems: listItems });
-	  },
+	  // makeTasks: function(item){
+	  //   var toDoEntries = this.state.items;
+	  //   function makeTasks(item) {
+	  //     return <ListItem itemName={item.text} itemKey={item.key} handleClick={deleteItem} />
+	  //     }
+	  //   var listItems = toDoEntries.map(makeTasks);
+	  //   this.setState({listItems: listItems});
+	  // },
 	  addItem: function addItem(e) {
 	    var itemArray = this.state.items;
 
@@ -114,7 +113,7 @@
 	      React.createElement(
 	        'div',
 	        null,
-	        React.createElement(ToDoItems, { makeTasks: this.makeTasks, listItems: this.state.listItems, entries: this.state.items, deleteItem: this.deleteItem })
+	        React.createElement(ToDoItems, { items: this.state.items, deleteItem: this.deleteItem })
 	      )
 	    );
 	  }
@@ -21500,9 +21499,12 @@
 	  displayName: 'ToDoItems',
 
 	  render: function render() {
-	    var makeTasks = this.props.makeTasks;
-	    makeTasks();
-	    var listItems = this.props.listItems;
+	    var _this = this;
+
+	    var listItems = this.props.items.map(function (item) {
+	      return React.createElement(ListItem, { itemName: item.text, itemKey: item.key, handleClick: _this.props.deleteItem });
+	    });
+
 	    return React.createElement(
 	      'ul',
 	      null,

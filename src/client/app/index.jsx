@@ -6,18 +6,17 @@ var ToDoList = React.createClass({
   getInitialState: function (){
     return {
       items: [],
-      index: 0,
-      listItems:''
+      index: 0
     };
   },
-  makeTasks: function(item){
-    var toDoEntries = this.state.items;
-    function makeTasks(item) {
-      return <ListItem itemName={item.text} itemKey={item.key} handleClick={deleteItem} />
-      }
-    var listItems = toDoEntries.map(makeTasks);
-    this.setState({listItems: listItems});
-  },
+  // makeTasks: function(item){
+  //   var toDoEntries = this.state.items;
+  //   function makeTasks(item) {
+  //     return <ListItem itemName={item.text} itemKey={item.key} handleClick={deleteItem} />
+  //     }
+  //   var listItems = toDoEntries.map(makeTasks);
+  //   this.setState({listItems: listItems});
+  // },
   addItem: function (e){
     var itemArray = this.state.items;
 
@@ -47,18 +46,17 @@ var ToDoList = React.createClass({
   },
   render: function (){
     return (
-            <div>
-              <form onSubmit={this.addItem}>
-                <input placeholder='enter task' ref={(a) => this._input =a}>
-                </input>
-                <button type='submit'>add
-                </button>
-              </form>
-
-            <div>
-              <ToDoItems makeTasks={this.makeTasks} listItems={this.state.listItems} entries={this.state.items} deleteItem={this.deleteItem} />
-            </div>
-            </div>
+      <div>
+        <form onSubmit={this.addItem}>
+          <input placeholder='enter task' ref={(a) => this._input =a}>
+          </input>
+          <button type='submit'>add
+          </button>
+        </form>
+        <div>
+          <ToDoItems items={this.state.items} deleteItem={this.deleteItem} />
+        </div>
+      </div>
     );
   }
 });
