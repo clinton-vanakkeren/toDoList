@@ -85,12 +85,10 @@
 	    e.preventDefault();
 	  },
 
-	  deleteItem: function deleteItem() {
-	    var index = this.props.itemKey;
-	    alert('index is ' + index);
-	    var itemArray = this.state.items;
-	    itemArray.splice(index, 1);
-	    alert(itemArray[0]);
+	  deleteItem: function deleteItem(key) {
+	    var newItems = this.state.items;
+	    newItems.splice(key, 1);
+	    this.setState({ items: newItems });
 	  },
 	  render: function render() {
 	    var _this = this;
@@ -21502,7 +21500,7 @@
 	    var _this = this;
 
 	    var listItems = this.props.items.map(function (item) {
-	      return React.createElement(ListItem, { itemName: item.text, itemKey: item.key, handleClick: _this.props.deleteItem });
+	      return React.createElement(ListItem, { itemName: item.text, key: item.key, itemIndex: item.key, handleClick: _this.props.deleteItem });
 	    });
 
 	    return React.createElement(
@@ -21525,16 +21523,20 @@
 	var ListItem = React.createClass({
 	  displayName: 'ListItem',
 
+	  onClickHandler: function onClickHandler() {
+	    this.props.handleClick(this.props.itemIndex);
+	  },
+
 	  render: function render() {
 	    return React.createElement(
 	      'li',
 	      null,
 	      this.props.itemName,
 	      ' ',
-	      this.props.itemKey,
+	      this.props.itemIndex,
 	      React.createElement(
 	        'button',
-	        { onClick: this.props.handleClick },
+	        { onClick: this.onClickHandler },
 	        'delete'
 	      )
 	    );

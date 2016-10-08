@@ -37,12 +37,10 @@ var ToDoList = React.createClass({
     e.preventDefault();
   },
 
-  deleteItem: function (){
-      var index = this.props.itemKey;
-      alert('index is '+index);
-      var itemArray=this.state.items;
-      itemArray.splice(index,1);
-      alert(itemArray[0]);
+  deleteItem: function (key){
+    var newItems = this.state.items;
+    newItems.splice(key, 1);
+    this.setState({items: newItems})
   },
   render: function (){
     return (
