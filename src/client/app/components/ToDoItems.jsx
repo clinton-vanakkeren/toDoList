@@ -2,8 +2,9 @@ var React = require('react');
 var ListItem = require('./ListItem.jsx');
 var ToDoItems = React.createClass({
   render: function (){
-    const listItems = this.props.items.map((item) => {
-      return <ListItem itemName={item.text} key={item.key} itemIndex={item.key} handleClick={this.props.deleteItem} />
+    var listItems = [];
+     this.props.items.forEach((item,i) => {
+      listItems.push(<ListItem itemName={item.text} key={i} itemIndex={i} handleClick={this.props.deleteItem} />);
     })
 
     return <ul>{listItems}</ul>;

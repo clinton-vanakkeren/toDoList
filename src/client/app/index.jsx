@@ -5,32 +5,20 @@ var ListItem = require('./components/ListItem.jsx');
 var ToDoList = React.createClass({
   getInitialState: function (){
     return {
-      items: [],
-      index: 0
+      items: []
     };
   },
-  // makeTasks: function(item){
-  //   var toDoEntries = this.state.items;
-  //   function makeTasks(item) {
-  //     return <ListItem itemName={item.text} itemKey={item.key} handleClick={deleteItem} />
-  //     }
-  //   var listItems = toDoEntries.map(makeTasks);
-  //   this.setState({listItems: listItems});
-  // },
+
   addItem: function (e){
     var itemArray = this.state.items;
 
     itemArray.push(
       {
         text: this._input.value,
-        key: this.state.index
       }
     );
-    var counter= this.state.index;
-    counter= counter+1;
     this.setState({
-      items: itemArray,
-      index: counter,
+      items: itemArray
     });
 
     this._input.value = "";

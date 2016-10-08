@@ -55,30 +55,18 @@
 
 	  getInitialState: function getInitialState() {
 	    return {
-	      items: [],
-	      index: 0
+	      items: []
 	    };
 	  },
-	  // makeTasks: function(item){
-	  //   var toDoEntries = this.state.items;
-	  //   function makeTasks(item) {
-	  //     return <ListItem itemName={item.text} itemKey={item.key} handleClick={deleteItem} />
-	  //     }
-	  //   var listItems = toDoEntries.map(makeTasks);
-	  //   this.setState({listItems: listItems});
-	  // },
+
 	  addItem: function addItem(e) {
 	    var itemArray = this.state.items;
 
 	    itemArray.push({
-	      text: this._input.value,
-	      key: this.state.index
+	      text: this._input.value
 	    });
-	    var counter = this.state.index;
-	    counter = counter + 1;
 	    this.setState({
-	      items: itemArray,
-	      index: counter
+	      items: itemArray
 	    });
 
 	    this._input.value = "";
@@ -21499,8 +21487,9 @@
 	  render: function render() {
 	    var _this = this;
 
-	    var listItems = this.props.items.map(function (item) {
-	      return React.createElement(ListItem, { itemName: item.text, key: item.key, itemIndex: item.key, handleClick: _this.props.deleteItem });
+	    var listItems = [];
+	    this.props.items.forEach(function (item, i) {
+	      listItems.push(React.createElement(ListItem, { itemName: item.text, key: i, itemIndex: i, handleClick: _this.props.deleteItem }));
 	    });
 
 	    return React.createElement(
