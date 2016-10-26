@@ -4,7 +4,7 @@ var ToDoItems = React.createClass({
   render: function (){
     var listItems = [];
      this.props.items.forEach((item,i) => {
-      listItems.push(<ListItem itemName={item.text} key={i} itemIndex={i} handleClick={this.props.deleteItem} />);
+      listItems.push(<ListItem itemName={item.text} key={i} itemIndex={i} handleClick={this.props.deleteItem} buttonStyle={this.props.buttonStyle} />);
     })
 
     return <ul>{listItems}</ul>;

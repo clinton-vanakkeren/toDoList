@@ -5,7 +5,7 @@ var ListItem = React.createClass({
   },
 
   render: function (){
-    return <li>{this.props.itemName} {this.props.itemIndex}<button onClick={this.onClickHandler}>delete</button></li>;
+    return <li>{this.props.itemName} <button onClick={this.onClickHandler} className='btn btn-danger' style={this.props.buttonStyle}>delete</button></li>;
   }
 });
 module.exports = ListItem;
