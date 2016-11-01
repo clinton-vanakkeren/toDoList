@@ -1,6 +1,12 @@
 var React = require('react');
 
+import Auth0Lock from 'auth0-lock'
+
 var Login = React.createClass({
+  showLock: function() {
+  // Show the Auth0Lock widget
+  this.props.lock.show();
+  },
   render: function(){
     return (
       <div>
@@ -10,7 +16,7 @@ var Login = React.createClass({
         <form>
           <input name='username' placeholder='enter username' />
           <input name='password' placeholder='enter password' />
-          <button type='submit'> sign in </button>
+          <button type='submit' onClick={this.showLock}> sign in </button>
         </form>
       </div>
   );
